@@ -1,0 +1,16 @@
+@startuml add_products_to_the_cart
+actor Customer
+boundary "System" as System
+Customer -> system: Product
+activate Orders
+activate Product
+system -> Product: check_avaliablity(productName)
+activate Inventory
+Inventory --> system: True
+deactivate Inventory
+activate Product
+system -> Product: get_product()
+deactivate Product
+system -> Orders: add_new_product(productName,number)
+deactivate system
+@enduml

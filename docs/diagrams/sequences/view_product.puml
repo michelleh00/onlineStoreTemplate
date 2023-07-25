@@ -1,0 +1,12 @@
+@startuml view_product
+actor Customer
+boundary "System" as System
+Customer -> system: Product
+activate Product
+system -> Product: get_product(productName)
+activate Inventory
+Inventory --> system: True
+deactivate Inventory
+deactivate Product
+deactivate system
+@enduml
