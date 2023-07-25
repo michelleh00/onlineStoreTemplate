@@ -1,0 +1,18 @@
+@startuml searchProduct
+actor Customer
+boundary "Search Product" as searchProduct
+control "View Product" as viewProduct
+Customer -> searchProduct: customer searches for a product via search bar
+activate searchProduct
+searchProduct-> inventory: search for the product (enter product to search)
+activate inventory
+alt Item Found
+inventory--> searchProduct: List of products 
+searchProduct-> Customer: Matching products are displayed
+else Item Not Found 
+inventory--> searchProduct: No results found 
+searchBar -> Customer: Display "Item not found" message 
+end
+deactivate searchProduct
+deactivate inventory
+@enduml
