@@ -23,7 +23,7 @@ INSERT into `inventory` (`item_name`, `info`, `price`, `stock`, `image_url`, `ca
 VALUES ('National Lampoons Christmas Vacation (1989)', "The Griswold family's plans for a big family Christmas predictably turn into a big disaster.", 4.00, 25, 'static/images/christmas_vacation.jpg', 'DVD');
 
 INSERT into `inventory` (`item_name`, `info`, `price`, `stock`, `image_url`, `category`)
-VALUES ('Doctor Sleep (Hardback)', 'The now middle-aged Dan Torrance (the boy protagonist of The Shining) must save a very special twelve-year-old girl from a tribe of murderous paranormals.', 26.00, 100, 'static/images/doctor_sleep.png', 'Book');
+VALUES ('Doctor Sleep (Hardback)', 'The now middle-aged Dan Torrance (the boy protagonist of The Shining) must save a very special twelve-year-old girl from a tribe of murderous paranormals.', 26.00, 100, 'static/images/doctor_sleep.jpg', 'Book');
 
 INSERT into `inventory` (`item_name`, `info`, `price`, `stock`, `image_url`, `category`)
 VALUES ('The Shining (1980)', 'A family heads to an isolated hotel for the winter where a sinister presence influences the father into violence, while his psychic son sees horrific forebodings from both past and future.', 16.00, 30, 'static/images/shining.jpg', 'DVD');
