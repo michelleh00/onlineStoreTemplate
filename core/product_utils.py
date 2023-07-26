@@ -6,8 +6,13 @@ class Product:
     
     """
 
-    def __init__():
-        None
+    def __init__(self, item_name, info, price, stock, image_url, category):
+        self.item_name = item_name
+        self.info = info
+        self.price = price
+        self.stock = stock
+        self.image_url = image_url
+        self.category = category 
 
 class Rating:
     """
