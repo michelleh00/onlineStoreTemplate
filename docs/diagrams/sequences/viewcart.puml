@@ -1,0 +1,16 @@
+@startuml ViewCart
+actor Customer
+boundary "System" as system
+Customer -> system: Cart
+activate Cart
+system -> Cart: view_Cart(productName, totalPrice)
+activate Product
+auth --> Product: get_product(productName, productPrice)
+deactivate auth
+system -> sessions: check_out(totalPrice)
+activate Inventory
+Inventory --> system: True
+deactivate Inventory
+deactivate Product
+deactivate system
+@enduml
