@@ -1,5 +1,7 @@
 from hashlib import sha512
 import os
+import tkinter as tk
+import tkinter.messagebox
 
 
 def hash_password(password: str, salt: str = None) -> tuple:
@@ -33,9 +35,10 @@ def username_exists(username: str) -> bool:
     with open("authentication/passwords.txt", "r") as file:
         lines = file.readlines()
     for line in lines:
-        if line.split(":")[0] == username:
-            return True
+      if line.split(":")[0] == username:
+        return True
     return False
+
 
 
 def update_passwords(username: str, key: str, salt: str):
