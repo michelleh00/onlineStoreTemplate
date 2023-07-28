@@ -134,7 +134,7 @@ def checkout():
 
     user_session.submit_cart()
 
-    return render_template('checkout.html', order=order, sessions=sessions, total_cost=user_session.total_cost)
+    return render_template('checkout.html', orders=order, sessions=sessions, total_cost=user_session.total_cost)
 
 
 if __name__ == '__main__':

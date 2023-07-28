@@ -7,7 +7,11 @@
         <h3>Your Order</h3>
         <hr>
         <div class="row">
-            <p>{{ total_cost }} </p>
+            <p> Your order: </p>
+                {% for order in orders %}
+                    <p> {{ order }} $ {{ price }}  </p>
+                {% endfor %}
+            <p>Total cost: $ {{ total_cost }} </p>
         </div>
     </div>
 </div>
