@@ -9,7 +9,7 @@
         <div class="row">
             <p> Your order: </p>
                 {% for order in orders %}
-                    <p> {{ order }} $ {{ price }}  </p>
+                    <p> {{ order }} ${{ orders[order][1] }} - {{ orders[order][0] }}  </p>
                 {% endfor %}
             <p>Total cost: $ {{ total_cost }} </p>
         </div>

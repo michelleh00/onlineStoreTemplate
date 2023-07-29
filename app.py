@@ -128,7 +128,7 @@ def checkout():
         print(f"item ID: {item['id']}")
         if request.form[str(item['id'])] > '0':
             count = request.form[str(item['id'])]
-            order[item['item_name']] = count
+            order[item['item_name']] = [count, item['price']]
             user_session.add_new_item(
                 item['id'], item['item_name'], item['price'], count)
 
