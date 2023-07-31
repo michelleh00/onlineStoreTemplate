@@ -11,6 +11,8 @@ __pycache__
 *.dll
 *.obj
 *.o
+*.venv
+
 
 # Project specific files and folders to ignore
 reports
