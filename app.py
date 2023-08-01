@@ -139,11 +139,11 @@ def checkout():
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():
-    query = request.args.get('query')
+    query = request.args.get('query', '')
     if query:
-        search_results = [product for product in products if query.lower() in product["name"].lower()]
+        search_results = [product for product in products if query.lower() in product["item_name"].lower()]
     else:
-        search_results = products
+        search_results = []
 
     return render_template('search.html', query=query, products=search_results)
 

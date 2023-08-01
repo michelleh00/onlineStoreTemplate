@@ -17,16 +17,31 @@
     </div>
 </div>
 
-    <div class="search-results"
-        {% if query %}
-            <h2>Search Results for "{{ query }}</h2>
-        {% endif %}    
-        <ul>
-            {% for product in products %}
-                <li>{{ product.item_name}} </li>
-            {% endfor %}
-        </ul>
-    </div>    
+<div class="search-results">
+    {% if query %}
+        <h2>Search Results for "{{ query }}"</h2>
+        {% if products %}
+            <ul>
+                {% for product in products %}
+                <div class="col-md-4">
+                    <div class="product_card" id="product_card">
+                        <img src="{{ product.image_url }}" class="product_card-img" alt="...">
+                        <div class="product_card-body">
+                            <h5 class="product_card-title">{{ product.item_name }}</h5>
+                            <p class="product_card-text">{{ product.info }}</p>
+                            <p class="product_card-price">${{ product.price }}</p>
+                            <input type="number" class="quantity" id={{product.id}} name={{product.id}}
+                                placeholder="0">
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No products found.</p>
+        {% endif %}
+    {% endif %}
+</div>   
     
 
 
