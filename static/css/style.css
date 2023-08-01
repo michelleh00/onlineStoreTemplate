@@ -158,11 +158,9 @@ body{
     list-style-type: none;
     margin: 0;
     padding: 0;
-    overflow: hidden;
     background-color: #00a99b;
 }
 .navli{
-    margin-right: 10px;
     float: left;
 }
 
@@ -170,7 +168,7 @@ body{
     font-family:Verdana;
     display: block;
     color: white;
-    text-align:left;
+    text-align:center;
     padding: 15px 15px;
     text-decoration: none;
 }
