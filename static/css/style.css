@@ -153,3 +153,29 @@ body{
 .h3-headings{
     color: #00a99b;
 }
+
+.navbar{
+    
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+.navli{
+    float: left;
+}
+
+.navli a{
+    display: block;
+    color: white;
+    text-align:center;
+    padding: 15px 15px;
+    text-decoration: none;
+}
+
+.center{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
