@@ -4,10 +4,11 @@
 
 <head>
     <title>Search Bar</title>
-    <!-- Add any CSS or external stylesheets you want to use for the visual appeal -->
 </head>
-<body>
-    <h1>Search Bar</h1>
+
+<div class="row" id="search_bar">
+    <div class="col-md-6">
+    <h3 class = "h3-headings">Search Bar</h3>
 
     <form action="/search" method="post">
         <input type="text" name="query" placeholder="Search for books">
@@ -24,5 +25,6 @@
     {% else %}
         <p>No results found.</p>
     {% endif %}
-</body>
+    </div>
+</div>
 {% endblock %}

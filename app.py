@@ -6,7 +6,7 @@ from flask import Flask, render_template, request
 from core.session import Sessions
 
 app = Flask(__name__)
-HOST, PORT = 'localhost', 8080
+HOST, PORT = 'localhost', 3000
 global username, products, db, sessions
 username = 'default'
 db = Database('database/store_records.db')
@@ -136,13 +136,14 @@ def checkout():
 
     return render_template('checkout.html', orders=order, sessions=sessions, total_cost=user_session.total_cost)
 
+
 @app.route('/search', methods=['GET', 'POST'])
 def search():
     query = request.form['query']
     # Implement product search logic here using the 'query' variable
     # For simplicity, we'll just filter based on product names in this example.
-    search_bar = [product for product in products if query.lower() in product['ite,_name'].lower()]
-    return render_template('search_bar.html', products=products)
+    search= [product for product in products if query.lower() in product['ite,_name'].lower()]
+    return render_template('search.html', products=products)
 
 
 if __name__ == '__main__':
