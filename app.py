@@ -125,16 +125,24 @@ def checkout():
     order = {}
     user_session = sessions.get_session(username)
     for item in products:
-        print(f"item ID: {item['id']}")
-        if request.form[str(item['id'])] > '0':
-            count = request.form[str(item['id'])]
-            order[item['item_name']] = [count, item['price']]
-            user_session.add_new_item(
-                item['id'], item['item_name'], item['price'], count)
+        item_id = str(item['id'])
+        req_quantity_str = request.form.get(item_id, '').strip()
 
-    user_session.submit_cart()
+        if req_quantity_str and req_quantity_str.isdigit():
+            req_quantity = int(req_quantity_str)
+        else:
+            req_quantity = 0
 
-    return render_template('checkout.html', orders=order, sessions=sessions, total_cost=user_session.total_cost)
+        if 0 < req_quantity <= item['stock']:
+            order[item['item_name']] = [req_quantity, item['price']]
+            user_session.add_new_item(item['id'], item['item_name'], item['price'], req_quantity)
+            
+    if order:
+        user_session.submit_cart()
+        return render_template('checkout.html', orders=order, sessions=sessions, total_cost=user_session.total_cost)
+    else:
+        return render_template('checkout.html', orders={}, sessions=sessions, total_cost=0)
+
 
 
 @app.route('/search', methods=['GET', 'POST'])
