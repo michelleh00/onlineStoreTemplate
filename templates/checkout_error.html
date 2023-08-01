@@ -1,0 +1,25 @@
+{% extends  "layout.html" %}
+    
+{% block content %}
+
+<head>
+    <title>Checkout</title>
+</head>
+
+<div class="row" id="login_error_page">
+    <div class="col-md-12">
+        <h3>We're Sorry!</h3>
+        <hr>
+        <div class="row">
+            <p> The quantity you've requested exceeds our current stock, please try again. </p>
+            <div class="row">
+                <div class="col-md-12" id="index_buttons">
+                    <a href="/login"><button class="btn btn-primary">Back to Login Page</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

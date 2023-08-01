@@ -124,6 +124,7 @@ def checkout():
     """
     order = {}
     user_session = sessions.get_session(username)
+
     for item in products:
         item_id = str(item['id'])
         req_quantity_str = request.form.get(item_id, '').strip()
@@ -141,7 +142,7 @@ def checkout():
         user_session.submit_cart()
         return render_template('checkout.html', orders=order, sessions=sessions, total_cost=user_session.total_cost)
     else:
-        return render_template('checkout.html', orders={}, sessions=sessions, total_cost=0)
+        return render_template('checkout_error.html')
 
 
 
