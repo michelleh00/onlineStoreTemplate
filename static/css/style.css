@@ -155,21 +155,21 @@ body{
 }
 
 .navbar{
-    
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: #00a99b;
 }
 .navli{
     float: left;
 }
 
 .navli a{
+    font-family:Verdana;
     display: block;
     color: white;
-    text-align:center;
+    text-align:left;
     padding: 15px 15px;
     text-decoration: none;
 }
