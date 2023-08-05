@@ -86,3 +86,4 @@ def test_hash_password_uses_given_salt():
         return False, error
     else:
         return True, "Hashes are different."
+    
