@@ -1,5 +1,19 @@
 from authentication.auth_tools import hash_password
 
+"""def test_invalid_usernames_not_allowed():
+    
+    MICHELLE WILL FINISH THIS MONDAY 8/7!
+    Tests that users cannot register with a username that contains special characters
+
+    args:
+        - None
+
+    returns:
+        - error_report: a tuple containing a boolean and a string, 
+          where the boolean is True if the test passed and False if it failed, 
+          and the string is the error report.
+
+"""
 
 def test_hash_password_generates_salt():
     """
@@ -86,3 +100,4 @@ def test_hash_password_uses_given_salt():
         return False, error
     else:
         return True, "Hashes are different."
+    

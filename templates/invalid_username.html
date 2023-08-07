@@ -1,0 +1,25 @@
+{% extends  "layout.html" %}
+    
+{% block content %}
+
+<head>
+    <title>Registration Error</title>
+</head>
+
+<div class="row" id="login_error_page">
+    <div class="col-md-12">
+        <h3>Registration Error</h3>
+        <hr>
+        <div class="row">
+            <p> Usernames may only contain letters or numbers. Please try again.</p>
+            <div class="row">
+                <div class="col-md-12" id="index_buttons">
+                    <a href="/register"><button class="btn btn-primary">Return to Registration</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

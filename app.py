@@ -102,12 +102,37 @@ def register():
     email = request.form['email']
     first_name = request.form['first_name']
     last_name = request.form['last_name']
-    salt, key = hash_password(password)
-    update_passwords(username, key, salt)
-    db.insert_user(username, key, email, first_name, last_name)
-    return render_template('index.html')
+    
+    if valid_username(username):
+        salt, key = hash_password(password)
+        update_passwords(username, key, salt)
+        db.insert_user(username, key, email, first_name, last_name)
+        return render_template('index.html')
+    else:
+        print("Invalid username: User attempted to register a username containing special characters")
+        return render_template('invalid_username.html')      
 
 
+"""
+    Checks if the username contains only letters and numbers
+
+    args:
+        - None
+
+    returns:
+        - True if contains only letters/numbers, or False if contains special characters
+
+    modifies:
+        - register(): checks if username is valid before allowing registration
+    """
+def valid_username(username):
+    username = request.form['username']
+    
+    if all(i.isalnum() for i in username):
+        return True
+    else:
+        return False
+    
 @app.route('/checkout', methods=['POST'])
 def checkout():
     """
@@ -124,26 +149,38 @@ def checkout():
     """
     order = {}
     user_session = sessions.get_session(username)
+
     for item in products:
-        print(f"item ID: {item['id']}")
-        if request.form[str(item['id'])] > '0':
-            count = request.form[str(item['id'])]
-            order[item['item_name']] = [count, item['price']]
-            user_session.add_new_item(
-                item['id'], item['item_name'], item['price'], count)
+        item_id = str(item['id'])
+        req_quantity_str = request.form.get(item_id, '').strip()
 
-    user_session.submit_cart()
+        if req_quantity_str and req_quantity_str.isdigit():
+            req_quantity = int(req_quantity_str)
+        else:
+            req_quantity = 0
 
-    return render_template('checkout.html', orders=order, sessions=sessions, total_cost=user_session.total_cost)
+        if 0 < req_quantity <= item['stock']:
+            order[item['item_name']] = [req_quantity, item['price']]
+            user_session.add_new_item(item['id'], item['item_name'], item['price'], req_quantity)
+            
+    if order:
+        user_session.submit_cart()
+        return render_template('checkout.html', orders=order, sessions=sessions, total_cost=user_session.total_cost)
+    else:
+        return render_template('checkout_error.html')
+
 
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():
-    query = request.form['query']
-    # Implement product search logic here using the 'query' variable
-    # For simplicity, we'll just filter based on product names in this example.
-    search= [product for product in products if query.lower() in product['ite,_name'].lower()]
-    return render_template('search.html', products=products)
+    query = request.args.get('query', '').lower()
+    search_results = []
+    if query:
+        search_results = [product for product in products if query.lower() in product["item_name"].lower()]
+    else:
+        search_results = []
+
+    return render_template('search.html', query=query, search_results=search_results)
 
 
 if __name__ == '__main__':

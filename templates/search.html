@@ -6,25 +6,43 @@
     <title>Search Bar</title>
 </head>
 
-<div class="row" id="search_bar">
+<div class="row" id="products_page">
     <div class="col-md-6">
-    <h3 class = "h3-headings">Search Bar</h3>
+        <h3 class = "h3-headings">Search Bar</h3>
 
-    <form action="/search" method="post">
-        <input type="text" name="query" placeholder="Search for books">
-        <input type="submit" value="Search">
-    </form>
-
-    {% if products %}
-        <h2>Search Results</h2>
-        <ul>
-            {% for product in products %}
-                <li>{{ product.item_name}} </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No results found.</p>
-    {% endif %}
+        <form action="/search" method="POST">
+            <input type="text" name="query" placeholder="Search for products">
+            <button type="submit" class="btn btn-primary" id="search_button">Search</button>
+        </form>
     </div>
 </div>
+
+<div class="search-results">
+    {% if query %}
+        <h2>Search Results for "{{ query }}"</h2>
+        {% if products %}
+            <ul>
+                {% for product in products %}
+                <div class="col-md-4">
+                    <div class="product_card" id="product_card">
+                        <img src="{{ product.image_url }}" class="product_card-img" alt="...">
+                        <div class="product_card-body">
+                            <h5 class="product_card-title">{{ product.item_name }}</h5>
+                            <p class="product_card-text">{{ product.info }}</p>
+                            <p class="product_card-price">${{ product.price }}</p>
+                            <input type="number" class="quantity" id={{product.id}} name={{product.id}}
+                                placeholder="0">
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No products found.</p>
+        {% endif %}
+    {% endif %}
+</div>   
+    
+
+
 {% endblock %}
