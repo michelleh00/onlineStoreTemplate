@@ -1,5 +1,5 @@
 CREATE TABLE inventory (
-    id INTEGER PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     item_name VARCHAR(255) NOT NULL,
     info VARCHAR(255) NOT NULL,
     price DECIMAL(10,2) NOT NULL,
@@ -17,7 +17,7 @@ CREATE TABLE users (
 );
 
 CREATE TABLE sales (
-    sale_id INTEGER PRIMARY KEY,
+    sale_id INTEGER PRIMARY KEY AUTOINCREMENT,
     transaction_id VARCHAR(255) NOT NULL,
     username VARCHAR(255) NOT NULL,
     item_id INTEGER NOT NULL,
@@ -27,4 +27,3 @@ CREATE TABLE sales (
     FOREIGN KEY (username) REFERENCES users(username),
     FOREIGN KEY (item_id) REFERENCES inventory(id)
 );
-
