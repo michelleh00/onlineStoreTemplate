@@ -2,7 +2,7 @@
 
 from authentication.auth_tools import login_pipeline, update_passwords, hash_password
 from database.db import Database
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, make_response
 from core.session import Sessions
 
 app = Flask(__name__)
@@ -102,12 +102,37 @@ def register():
     email = request.form['email']
     first_name = request.form['first_name']
     last_name = request.form['last_name']
-    salt, key = hash_password(password)
-    update_passwords(username, key, salt)
-    db.insert_user(username, key, email, first_name, last_name)
-    return render_template('index.html')
+    
+    if valid_username(username):
+        salt, key = hash_password(password)
+        update_passwords(username, key, salt)
+        db.insert_user(username, key, email, first_name, last_name)
+        return render_template('index.html')
+    else:
+        print("Invalid username: User attempted to register a username containing special characters")
+        return render_template('invalid_username.html')      
 
 
+"""
+    Checks if the username contains only letters and numbers
+
+    args:
+        - None
+
+    returns:
+        - True if contains only letters/numbers, or False if contains special characters
+
+    modifies:
+        - register(): checks if username is valid before allowing registration
+    """
+def valid_username(username):
+    username = request.form['username']
+    
+    if all(i.isalnum() for i in username):
+        return True
+    else:
+        return False
+    
 @app.route('/checkout', methods=['POST'])
 def checkout():
     """
