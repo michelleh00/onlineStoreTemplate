@@ -1,4 +1,4 @@
-from authentication.auth_tools import hash_password
+from authentication.auth_tools import hash_password, username_exists
 
 
 
@@ -88,3 +88,28 @@ def test_hash_password_uses_given_salt():
     else:
         return True, "Hashes are different."
     
+def test_username_exist():
+    """
+    Worked by Esther (echong1)
+    Tests username_exist function that returns true or false as the username already exists.
+
+    args:
+        -None
+    returns:
+        -error_report: a tuple containing a boolean and a string.
+    """
+
+    username_to_test = "aaa"
+    result = False
+
+    with open("authentication/passwords.txt", "r") as file:
+        lines = file.readlines()
+    for line in lines:
+      if line.split(":")[0] == username_to_test:
+        result = True
+
+    if username_exist(username_to_test) == result:
+        return True, ""
+    else:
+        error = "Error"
+        return False, error

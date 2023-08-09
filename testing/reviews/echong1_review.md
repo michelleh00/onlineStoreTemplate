@@ -3,7 +3,7 @@
 ## Tests Reviewed
 
 - **Test Source File:** [testing/auth_tests.py](../../testing/auth_tests.py)
-  - **Test Function Name:** `test_hash_password_generates_salt`
-    - **Date Reviewed:** 07/01/2023
+  - **Test Function Name:** `test_username_exist`
+    - **Date Reviewed:** 08/09/23
     - **Comments:**
-      - This only tests whether something is returned, not whether it was generated correctly.
+      - Tests username_exist function that returns true or false as the username already exists.
