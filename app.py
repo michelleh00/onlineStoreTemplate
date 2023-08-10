@@ -42,6 +42,18 @@ def login_page():
     """
     return render_template('login.html')
 
+@app.route('/contact')
+def contact_page():
+    """
+    Renders the contact page when the user is at the `/contact` endpoint.
+
+    args:
+        - None
+
+    returns:
+        - None
+    """
+    return render_template('contact.html')
 
 @app.route('/home', methods=['POST'])
 def login():

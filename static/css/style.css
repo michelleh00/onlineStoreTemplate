@@ -195,3 +195,16 @@ body{
     margin-right: auto;
     display: block;
 }
+
+#contactP{
+    padding-left:0px;
+    text-align: center;
+    font-family: Verdana;
+    font-size: 20px;
+
+}
+
+.contact{
+    text-align: center;
+    padding-top:50px;
+}
