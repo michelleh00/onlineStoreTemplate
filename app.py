@@ -115,13 +115,16 @@ def register():
     first_name = request.form['first_name']
     last_name = request.form['last_name']
     
-    if valid_username(username):
+    if email_already_in_use(email):
+        print("Error: Invalid email- User attempted to register an email that is already associated with an account")
+        return render_template('email_already_in_use.html')
+    elif valid_username(username):
         salt, key = hash_password(password)
         update_passwords(username, key, salt)
         db.insert_user(username, key, email, first_name, last_name)
         return render_template('index.html')
     else:
-        print("Invalid username: User attempted to register a username containing special characters")
+        print("Error: Invalid username- User attempted to register a username containing special characters")
         return render_template('invalid_username.html')      
 
 
@@ -144,6 +147,27 @@ def valid_username(username):
         return True
     else:
         return False
+
+"""
+    Checks if the email has already been registered
+
+    args:
+        - email
+
+    returns:
+        - True if already registered, or False if unregistered
+
+    modifies:
+        - register(): checks if email has already been registered before allowing registration
+    """
+
+def email_already_in_use(email: str):
+    db.cursor.execute("SELECT email FROM users WHERE email = ?", (email,))
+    result = db.cursor.fetchone()
+    if result:
+        return True
+    else:
+        return False    
     
 @app.route('/checkout', methods=['POST'])
 def checkout():
